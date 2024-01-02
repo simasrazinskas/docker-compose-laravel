@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Flight;
+use App\Http\Controllers\FlightController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +16,14 @@ use Illuminate\Support\Facades\Route;
  */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
+});
+Route::get('/dashboard', function () {
+    return view('dashboard');
+});
+
+Route::resource('/flights', FlightController::class);
+
+Route::get('/api/flights/{flight}', function (Flight $flight) {
+    return response()->json($flight);
 });
